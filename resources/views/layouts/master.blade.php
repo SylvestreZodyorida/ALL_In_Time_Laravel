@@ -65,10 +65,9 @@
                         </li>
                     </ul>
                     <li class="nav-item search">
-                        <form class="d-flex " method="post" role="search" action="{{ route('recherche') }}">
-                            <input title="Rechercher un contact ou un évènement" type="text" name="search" id="search" placeholder="Rechercher un contact ou un évènement" class="form-control">
+                        <form class="d-flex " method="get" role="search" action="{{ route('recherche') }}">
+                            <input title="Rechercher un contact par son nom  ou numéro" type="text" name="search" id="search" placeholder="Rechercher un contact par son nom  ou numéro.." class="form-control">
                             <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                        
                         </form>
                         
                     </li>

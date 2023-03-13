@@ -2,11 +2,58 @@
 
 @section("contenu")
 <br><br><br><br><br><br>
-<table class="container table"> 
-    <tbody>
-        
-        <tr>
-           rurururur
-        </tr>
-    </tbody>
-</table>
+
+<div class="container">
+    <section class="pg_list_ctct">
+        <div class="top">
+            <h3>Résultat de la recherche
+                    @if(session()->has("successDelete"))
+                        <span class="msg_success">{{ session()->get('successDelete') }}</span>
+                    @endif
+            </h3>   
+        </div>
+        <table class="container table">
+            <thead>
+                <tr>
+                    <th class="tb_cent" scope="col"># </th>
+                    <th class="tb_cent"  scope="col">Nom </th>
+                    <th class="tb_cent"  scope="col">Prénom </th>
+                    <th  class="tb_cent" scope="col">Email </th>
+                    <th  class="tb_cent" scope="col">Numero </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(isset($contact))
+                    @if(count($contact)>0)
+                        @foreach($contact as $contact)
+                        <tr>
+                            <td  class="tb_cent" scope="row">{{ $loop->index + 1}} </td>
+                            <td class="tb_cent" >{{ $contact->name }}</td>
+                            <td class="tb_cent" >{{ $contact->surname }}</td>
+                            <td class="tb_cent" >{{ $contact->email }}</td>
+                            <td class="tb_cent" >{{ $contact->numero }}</td>
+                            <td class="tb_cent" >
+                                <a class="btn btn-warning btn-block " href="{{ route('contact.edit', ['contact'=>$contact->id]) }}">🖊</a>
+                                <a class="btn btn-primary " href="#" onclick="if(confirm('Confirmer la suppression ?')){document.getElementById('form-{{$contact->id}}').submit() }"><i class="fas fa-trash"></i></a>
+                            
+                            </td>
+                            <form id="form-{{$contact->id}}" action="{{route('contact.delete', ['contact'=>$contact->id])}}" method="post">
+                                @csrf
+                                <input type="hidden" name="_method" value="delete">
+                            </form>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="tb_cent">pas de contact " {{$get_contact}} " trouvé ! 🤔</td>
+                            <td class="tb_cent">pas de contact " {{$get_contact}} " trouvé ! 🤔</td>
+                            <td class="tb_cent">pas de contact " {{$get_contact}} " trouvé ! 🤔</td>
+                            <td class="tb_cent">pas de contact " {{$get_contact}} " trouvé ! 🤔</td>
+                            <td class="tb_cent">pas de contact " {{$get_contact}} " trouvé ! 🤔</td> 
+                        </tr>
+                    @endif
+                @endif
+            </tbody>
+        </table>
+    </section>
+</div>

@@ -16,10 +16,12 @@
             <thead>
                 <tr>
                     <th class="tb_cent" scope="col"># &nbsp; </th>
-                    <th class="tb_cent"  scope="col">Nom &nbsp; </th>
-                    <th class="tb_cent"  scope="col">Prénom &nbsp; </th>
-                    <th  class="tb_cent" scope="col">Email &nbsp; </th>
-                    <th  class="tb_cent" scope="col">Numero Mobile &nbsp; </th>
+                    <th class="tb_cent"  scope="col">Nom </th>
+                    <th class="tb_cent"  scope="col">Prénom </th>
+                    <th  class="tb_cent" scope="col">Email</th>
+                    <th  class="tb_cent" scope="col">Numero Mobile  </th>
+                    <th  class="tb_cent" scope="col">Date de naissance </th>
+                    
 
                 </tr>
             </thead>
@@ -31,11 +33,12 @@
                     <td class="tb_cent" >{{ $contact->surname }}</td>
                     <td class="tb_cent" >{{ $contact->email }}</td>
                     <td class="tb_cent" >{{ $contact->numero }}</td>
+                    <td class="tb_cent" >{{ $contact->jour."/".$contact->mois."/".$contact->annee }}</td>
                     <td class="tb_cent" >
                         <a class="btn btn-warning btn-block " href="{{ route('contact.edit', ['contact'=>$contact->id]) }}">🖊</a>
                     </td>
                     <td class="tb_cent" >
-                        <a class="btn btn-primary " href="#" onclick="if(confirm('Confirmer la suppression ?')){document.getElementById('form-{{$contact->id}}').submit() }"><i class="fas fa-trash">🗑</i></a>
+                        <a class="btn btn-primary " href="#" onclick="if(confirm('Confirmer la suppression ?')){document.getElementById('form-{{$contact->id}}').submit() }"><i class="fas fa-trash"></i></a>
                     </td>
                     <form id="form-{{$contact->id}}" action="{{route('contact.delete', ['contact'=>$contact->id])}}" method="post">
                         @csrf

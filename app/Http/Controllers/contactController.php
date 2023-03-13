@@ -84,11 +84,11 @@ class contactController extends Controller
         return back()->with("successDelete", "Suppression effectuée ✅ !");
     }
 
-    public function search(Contacts $contact){
+    public function search(Request $request){
 
-        $contact = Contacts::all();
-
-        return view('resultatContact',compact('contact'));
+        $get_contact = $request->search;
+        $contact = Contacts::where('name','LIKE','%'.$get_contact.'%')->get();
+        return view('resultatContact',compact('contact','get_contact'));
     }
 
     public function indexAnnif(){
